@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15231d">
+  <title>The Word Witch | Halloween English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Rubik+Glitch&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #15231d;
+      --night-light: #20342b;
+      --paper: #f5f0df;
+      --muted: #b6c0a9;
+      --orange: #ff8b38;
+      --orange-light: #ffb56f;
+      --lime: #d3ef75;
+      --pink: #f4a1a1;
+      --line: rgba(245, 240, 223, .18);
+      --body-font: "DM Sans", "Trebuchet MS", sans-serif;
+      --display-font: "Rubik Glitch", Impact, fantasy;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--paper);
+      background-color: var(--night);
+      background-image: radial-gradient(rgba(211, 239, 117, .1) .8px, transparent .8px);
+      background-size: 24px 24px;
+      font-family: var(--body-font);
+      line-height: 1.55;
+    }
+
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; font-size: 13px; font-weight: 800; letter-spacing: 0; }
+    .brand-mark { display: grid; width: 35px; aspect-ratio: 1; place-items: center; border: 1px solid var(--orange); border-radius: 50%; color: var(--orange); font-size: 19px; }
+    .top-note { color: var(--muted); font-size: 12px; font-weight: 700; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr .83fr;
+      gap: 54px;
+      align-items: center;
+      padding-block: 54px 58px;
+    }
+    .eyebrow { margin: 0 0 12px; color: var(--lime); font-size: 11px; font-weight: 800; letter-spacing: 1.7px; text-transform: uppercase; }
+    h1 { max-width: 580px; margin: 0; font-family: var(--display-font); font-size: 64px; font-weight: 400; line-height: .98; }
+    h1 span { color: var(--orange); }
+    .hero-copy { max-width: 455px; margin: 20px 0 0; color: var(--muted); font-size: 16px; }
+    .hero-link { display: inline-flex; gap: 9px; align-items: center; margin-top: 23px; color: var(--lime); font-size: 13px; font-weight: 800; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+    .hero-art { position: relative; min-height: 286px; overflow: hidden; border: 1px solid rgba(245, 240, 223, .25); background: #354337; }
+    .hero-art img { display: block; width: 100%; height: 286px; object-fit: cover; filter: saturate(.8); }
+    .art-label { position: absolute; right: 12px; bottom: 12px; padding: 7px 10px; color: var(--night); background: var(--lime); font-size: 10px; font-weight: 800; letter-spacing: .7px; text-transform: uppercase; }
+
+    .lesson { border-block: 1px solid var(--line); background: rgba(32, 52, 43, .76); }
+    .lesson-inner { display: grid; grid-template-columns: .72fr 1.28fr; gap: 54px; padding-block: 35px; }
+    .lesson h2, .game-heading h2 { margin: 0; font-size: 25px; line-height: 1.2; }
+    .lesson .eyebrow { margin-bottom: 8px; }
+    .lesson-text { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+    .lesson-text p { margin: 0; color: var(--muted); font-size: 14px; }
+    .lesson-text strong { color: var(--paper); }
+    .word-pair { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .word-pair span { padding: 5px 9px; border: 1px solid var(--line); color: var(--paper); font-size: 12px; }
+    .word-pair b { color: var(--orange-light); }
+    .horror-guide { grid-column: 1 / -1; padding-top: 21px; border-top: 1px solid var(--line); }
+    .horror-guide h3 { margin: 0; font-size: 19px; }
+    .genre-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 22px; margin: 12px 0 18px; }
+    .genre-item { display: grid; grid-template-columns: minmax(94px, .42fr) 1fr; gap: 10px; align-items: start; padding: 11px 0; border-top: 1px solid var(--line); font-size: 12px; }
+    .genre-item dt { color: var(--orange-light); font-weight: 800; }
+    .genre-item dd { margin: 0; color: var(--muted); }
+    .genre-note { margin: 0; color: var(--muted); font-size: 11px; }
+    .talk-prompt { display: flex; gap: 16px; align-items: baseline; padding: 13px 0 0; border-top: 1px solid var(--line); }
+    .talk-prompt strong { flex: 0 0 auto; color: var(--lime); font-size: 11px; text-transform: uppercase; }
+    .talk-prompt p { margin: 0; color: var(--paper); font-size: 13px; }
+    .character-section { padding-block: 42px 8px; border-top: 1px solid var(--line); }
+    .character-heading { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 20px; }
+    .character-heading .eyebrow { margin-bottom: 7px; }
+    .character-heading h2, .level-up h2 { margin: 0; font-size: 25px; line-height: 1.2; }
+    .character-heading > p { max-width: 370px; margin: 0; color: var(--muted); font-size: 12px; text-align: right; }
+    .character-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+    .character-card { display: flex; min-width: 0; flex-direction: column; border: 1px solid var(--line); background: rgba(32, 52, 43, .76); }
+    .character-photo { aspect-ratio: 1.18; overflow: hidden; background: var(--night-light); }
+    .character-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+    .character-copy { display: flex; flex: 1; flex-direction: column; padding: 13px; }
+    .character-type { margin: 0 0 4px; color: var(--lime); font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .character-card h3 { margin: 0 0 7px; font-size: 17px; line-height: 1.2; }
+    .character-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .character-card .character-fact { margin-top: auto; padding-top: 10px; }
+    .character-fact strong { color: var(--orange-light); }
+    .level-up { display: grid; grid-template-columns: 230px 1fr; margin-block: 30px 42px; border-block: 1px solid var(--line); background: rgba(32, 52, 43, .76); }
+    .level-up img { display: block; width: 100%; height: 100%; min-height: 190px; max-height: 250px; object-fit: cover; object-position: center 35%; }
+    .level-up-copy { align-self: center; padding: 24px 30px; }
+    .level-up .eyebrow { margin-bottom: 8px; }
+    .level-up p:last-child { max-width: 560px; margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+
+    .game-section { padding-block: 48px 80px; }
+    .game-heading { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 22px; }
+    .game-heading .eyebrow { margin-bottom: 7px; }
+    .game-heading p { max-width: 375px; margin: 0; color: var(--muted); font-size: 12px; text-align: right; }
+    .game-board { border: 1px solid rgba(245, 240, 223, .24); background: rgba(21, 35, 29, .94); }
+    .board-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+    .board-kicker { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .question-count { color: var(--lime); font-size: 12px; font-weight: 800; }
+    .setup { padding: 24px 20px 22px; }
+    .setup h3, .team-area h3 { margin: 0 0 5px; font-size: 18px; }
+    .setup > p { margin: 0 0 17px; color: var(--muted); font-size: 13px; }
+    .player-form { display: flex; max-width: 610px; gap: 9px; }
+    .player-form input { min-width: 0; flex: 1; height: 44px; padding: 0 12px; border: 1px solid rgba(245, 240, 223, .3); border-radius: 0; outline: none; color: var(--paper); background: #20342b; }
+    .player-form input:focus { border-color: var(--lime); box-shadow: 0 0 0 2px rgba(211, 239, 117, .16); }
+    .player-form input::placeholder { color: #a4af9c; }
+    .button { min-height: 42px; padding: 9px 15px; border: 1px solid transparent; border-radius: 0; background: var(--orange); color: #21180f; cursor: pointer; font-size: 12px; font-weight: 800; transition: background .16s ease, transform .16s ease; }
+    .button:hover:not(:disabled) { background: var(--orange-light); transform: translateY(-1px); }
+    .button:focus-visible, .remove-player:focus-visible, .answer:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    .button:disabled { cursor: not-allowed; opacity: .46; }
+    .button.secondary { border-color: var(--line); color: var(--paper); background: transparent; }
+    .button.secondary:hover:not(:disabled) { border-color: var(--lime); background: rgba(211, 239, 117, .08); }
+    .player-list { display: flex; flex-wrap: wrap; gap: 8px; min-height: 34px; margin: 16px 0 20px; }
+    .player-chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px 6px 11px; border: 1px solid var(--line); color: var(--paper); font-size: 12px; }
+    .remove-player { display: grid; width: 20px; height: 20px; place-items: center; border: 0; color: var(--muted); background: transparent; cursor: pointer; font-size: 17px; line-height: 1; }
+    .remove-player:hover { color: var(--pink); }
+    .setup-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .helper { color: var(--muted); font-size: 11px; }
+    .notice { min-height: 20px; margin: 10px 0 0; color: var(--orange-light); font-size: 12px; }
+
+    .gameplay { border-top: 1px solid var(--line); }
+    .game-layout { display: grid; grid-template-columns: .82fr 1.18fr; }
+    .team-area { padding: 23px 20px; border-right: 1px solid var(--line); }
+    .team-area > p { margin: 0 0 18px; color: var(--muted); font-size: 12px; }
+    .teams { display: grid; gap: 14px; }
+    .team { padding-top: 11px; border-top: 2px solid var(--orange); }
+    .team.team-b { border-color: var(--lime); }
+    .team-title { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .team-score { color: var(--orange-light); }
+    .team-b .team-score { color: var(--lime); }
+    .team-members { color: var(--muted); font-size: 12px; }
+    .turn-list { display: grid; gap: 5px; margin-top: 14px; }
+    .turn-player { display: flex; justify-content: space-between; gap: 10px; padding: 6px 8px; color: var(--muted); font-size: 11px; }
+    .turn-player.current { color: var(--night); background: var(--lime); font-weight: 800; }
+    .turn-tag { font-size: 9px; text-transform: uppercase; }
+    .round-area { padding: 23px 24px 25px; }
+    .turn-banner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 19px; }
+    .turn-banner strong { color: var(--lime); font-size: 13px; }
+    .turn-banner span { color: var(--muted); font-size: 11px; }
+    .round-area h3 { margin: 0 0 16px; font-size: 19px; line-height: 1.35; }
+    .answers { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .answer { min-height: 45px; padding: 9px 11px; border: 1px solid var(--line); color: var(--paper); background: #20342b; cursor: pointer; text-align: left; font-size: 12px; transition: border-color .16s ease, background .16s ease; }
+    .answer:hover:not(:disabled) { border-color: var(--orange); background: #2b4035; }
+    .answer:disabled { cursor: default; }
+    .answer.correct { border-color: var(--lime); color: var(--night); background: var(--lime); font-weight: 800; }
+    .answer.incorrect { border-color: var(--pink); color: var(--paper); background: #663d3c; }
+    .feedback { min-height: 23px; margin: 12px 0 10px; color: var(--muted); font-size: 12px; }
+    .feedback.good { color: var(--lime); }
+    .feedback.bad { color: var(--pink); }
+    .round-actions { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .round-actions .button { margin-left: auto; }
+    .results { padding: 29px 20px 32px; text-align: center; }
+    .results .eyebrow { margin-bottom: 8px; }
+    .results h3 { margin: 0; font-size: 27px; }
+    .results > p { color: var(--muted); font-size: 13px; }
+    .final-scores { display: flex; justify-content: center; gap: 32px; margin: 22px 0; }
+    .final-score { color: var(--muted); font-size: 12px; }
+    .final-score strong { display: block; color: var(--orange-light); font-size: 25px; }
+    .final-score:last-child strong { color: var(--lime); }
+    [hidden] { display: none !important; }
+
+    footer { padding-block: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; gap: 25px; padding-block: 38px; }
+      h1 { font-size: 54px; }
+      .hero-art, .hero-art img { min-height: 220px; height: 220px; }
+      .lesson-inner { grid-template-columns: 1fr; gap: 18px; }
+      .horror-guide { grid-column: auto; }
+      .genre-list { grid-template-columns: 1fr 1fr; }
+      .character-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .game-layout { grid-template-columns: 1fr; }
+      .team-area { border-right: 0; border-bottom: 1px solid var(--line); }
+      .teams { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 30px, 1120px); }
+      .topbar { padding-block: 16px; }
+      .top-note { max-width: 115px; text-align: right; }
+      h1 { font-size: 47px; }
+      .lesson-text { grid-template-columns: 1fr; gap: 16px; }
+      .genre-list { grid-template-columns: 1fr; }
+      .talk-prompt { align-items: start; flex-direction: column; gap: 5px; }
+      .character-heading { align-items: start; flex-direction: column; }
+      .character-heading > p { text-align: left; }
+      .character-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+      .character-copy { padding: 10px; }
+      .character-card h3 { font-size: 15px; }
+      .character-card p { font-size: 10px; }
+      .level-up { grid-template-columns: 1fr; }
+      .level-up img { height: 190px; min-height: 0; }
+      .level-up-copy { padding: 20px; }
+      .game-section { padding-block: 34px 55px; }
+      .game-heading { align-items: start; flex-direction: column; }
+      .game-heading p { text-align: left; }
+      .player-form { align-items: stretch; flex-direction: column; }
+      .player-form .button { align-self: flex-start; }
+      .setup, .team-area, .round-area { padding-inline: 15px; }
+      .answers { grid-template-columns: 1fr; }
+      footer .wrap { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">☾</span><span>AFTER DARK ENGLISH CLUB</span></div>
+    <span class="top-note">A little English magic for Halloween</span>
+  </header>
+
+  <main>
+    <section class="wrap hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">A spooky little word lesson</p>
+        <h1 id="page-title">The Word<br><span>Witch</span></h1>
+        <p class="hero-copy">Some words are missing something. Learn the curious little ending that means “without,” then put your team’s word skills to the test.</p>
+        <a class="hero-link" href="#lesson">Open the lesson <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art">
+        <img src="images/english_tuesday.jpg" alt="Turma reunida em uma festa de Halloween do English Tuesday" fetchpriority="high">
+        <span class="art-label">Beware: word magic</span>
+      </div>
+    </section>
+
+    <section class="lesson" id="lesson" aria-labelledby="lesson-title">
+      <div class="wrap lesson-inner">
+        <div>
+          <p class="eyebrow">The mini lesson</p>
+          <h2 id="lesson-title">Meet the suffix <span style="color:var(--orange)">-less</span></h2>
+        </div>
+        <div class="lesson-text">
+          <div>
+            <p>Add <strong>-less</strong> to a noun to make an adjective meaning <strong>without</strong> something or <strong>not having</strong> it. In Portuguese, it often means “sem”.</p>
+            <div class="word-pair" aria-label="Examples"><span>hope <b>→</b> hopeless</span><span>care <b>→</b> careless</span></div>
+          </div>
+          <p><strong>A tiny spelling tip:</strong> usually, keep the original noun and add <em>-less</em>. Then use the new adjective to describe someone or something: <em>a cloudless sky</em>, <em>a fearless cat</em>.</p>
+        </div>
+        <div class="horror-guide">
+          <p class="eyebrow">Horror movie vocabulary</p>
+          <h3>What kind of scary story do you like?</h3>
+          <dl class="genre-list">
+            <div class="genre-item"><dt>Thriller</dt><dd>A suspenseful story full of tension and surprises.</dd></div>
+            <div class="genre-item"><dt>Slasher / gory</dt><dd>A killer, chase scenes, and often bloody, graphic violence.</dd></div>
+            <div class="genre-item"><dt>Ghost story</dt><dd>A story about spirits haunting the living.</dd></div>
+            <div class="genre-item"><dt>Poltergeist</dt><dd>A noisy spirit said to move objects; often part of supernatural horror.</dd></div>
+            <div class="genre-item"><dt>Psychological horror</dt><dd>Fear built around the mind, paranoia, and uncertainty.</dd></div>
+            <div class="genre-item"><dt>Monster horror</dt><dd>A frightening creature threatens the characters.</dd></div>
+          </dl>
+          <p class="genre-note"><strong>Scary</strong> describes how a movie feels. <strong>Gory</strong> describes graphic blood and violence.</p>
+          <div class="talk-prompt"><strong>Talk about it</strong><p>What’s your favorite horror movie? What makes it thrilling, scary, or memorable?</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap character-section" id="characters" aria-labelledby="characters-title">
+      <div class="character-heading">
+        <div><p class="eyebrow">Halloween character files</p><h2 id="characters-title">Meet the monsters &amp; mischief-makers</h2></div>
+        <p>Read each short profile, learn a curious detail, and add a few new words to your spooky-story vocabulary.</p>
+      </div>
+      <div class="character-grid">
+        <article class="character-card">
+          <div class="character-photo"><img src="images/odilon.jpg" alt="Odilon dressed as Saci for Halloween" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Brazilian folklore</p><h3>Saci</h3><p>A mischievous, one-legged trickster who travels in a whirlwind and wears a red cap.</p><p class="character-fact"><strong>Curiosity:</strong> Folktales say his cap gives him magical powers; catching him may mean taking the cap.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/leo.jpg" alt="Leo dressed as Freddy Krueger" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Nightmare villain</p><h3>Freddy Krueger</h3><p>A horror villain who haunts people in their dreams, wearing a striped sweater and a bladed glove.</p><p class="character-fact"><strong>Curiosity:</strong> His glove turns an ordinary nightmare into a very recognizable movie prop.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/flavio.jpg" alt="Flavio dressed as Dracula" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Vampire legend</p><h3>Dracula</h3><p>A mysterious vampire, usually shown with a cape, sharp fangs, and a taste for blood.</p><p class="character-fact"><strong>Curiosity:</strong> Bram Stoker’s novel <em>Dracula</em> was published in 1897.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/neto.jpg" alt="Neto dressed as Frankenstein’s monster" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Classic creature</p><h3>Frankenstein</h3><p>A scientist creates a living being from body parts; people often call the creature Frankenstein, too.</p><p class="character-fact"><strong>Curiosity:</strong> Mary Shelley’s novel was first published in 1818.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/bacana.jpg" alt="Bacana dressed as a zombie" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Undead horror</p><h3>Zombies</h3><p>Reanimated dead characters often appear in scary stories about survival and the end of the world.</p><p class="character-fact"><strong>Curiosity:</strong> Modern zombie stories draw on Haitian folklore and later horror films.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/adilson.jpg" alt="Adilson dressed as a mummy" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Ancient mystery</p><h3>Mummy</h3><p>A preserved body wrapped in bandages, often brought back to life in supernatural tales.</p><p class="character-fact"><strong>Curiosity:</strong> Mummification was an ancient burial practice; the mummy’s curse is a later horror legend.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/alek_wandinha.jpg" alt="Alek dressed as Wednesday Addams" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Gothic comedy</p><h3>Wednesday Addams</h3><p>A deadpan, clever member of the Addams family who finds the strange side of life fascinating.</p><p class="character-fact"><strong>Curiosity:</strong> Her name connects to the rhyme “Wednesday’s child is full of woe.”</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/khalifa2.jpg" alt="Khalifa dressed as a skeleton" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Spooky symbol</p><h3>Skeleton</h3><p>A skeleton is the framework of bones inside a body and a classic Halloween costume.</p><p class="character-fact"><strong>Curiosity:</strong> Most adults have 206 bones.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/godoi.jpg" alt="Godoi dressed as a werewolf" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Shapeshifter</p><h3>Werewolf</h3><p>A person who transforms into a wolf-like creature, often when the full moon appears.</p><p class="character-fact"><strong>Curiosity:</strong> Werewolf legends appear in stories from many different cultures.</p></div>
+        </article>
+        <article class="character-card">
+          <div class="character-photo"><img src="images/caio.jpg" alt="Caio dressed as Ghostface" loading="lazy"></div>
+          <div class="character-copy"><p class="character-type">Masked slasher</p><h3>Ghostface</h3><p>A masked figure from the <em>Scream</em> films who calls and frightens victims.</p><p class="character-fact"><strong>Curiosity:</strong> The Ghostface identity is taken up by different people across the films.</p></div>
+        </article>
+      </div>
+
+      <aside class="level-up" aria-labelledby="level-up-title">
+        <img src="images/khalifa.jpg" alt="Khalifa’s one-year progress photo" loading="lazy">
+        <div class="level-up-copy"><p class="eyebrow">One step at a time</p><h2 id="level-up-title">Keep leveling up your English</h2><p>Every new word, brave answer, and little conversation moves you forward. Keep practicing and see how far you can go.</p></div>
+      </aside>
+    </section>
+
+    <section class="wrap game-section" id="game" aria-labelledby="game-title">
+      <div class="game-heading">
+        <div><p class="eyebrow">The classroom challenge</p><h2 id="game-title">The -less word game</h2></div>
+        <p>Add at least two players. The spellbook will deal out balanced teams and shuffle the speaking turns.</p>
+      </div>
+
+      <div class="game-board" id="game-board">
+        <div class="board-top"><span class="board-kicker">Team spell-off</span><span class="question-count" id="question-count">10 questions</span></div>
+        <div class="setup" id="setup-panel">
+          <h3>Who’s playing?</h3>
+          <p>Enter one name at a time. Your player list stays on this page.</p>
+          <form class="player-form" id="player-form">
+            <label for="player-name" class="visually-hidden" hidden>Player name</label>
+            <input id="player-name" name="player-name" autocomplete="off" maxlength="24" placeholder="Type a player name" required>
+            <button class="button" type="submit">Add player <span aria-hidden="true">+</span></button>
+          </form>
+          <div class="player-list" id="player-list" aria-label="Registered players"></div>
+          <div class="setup-actions">
+            <button class="button" id="deal-button" type="button" disabled>Shuffle teams &amp; play <span aria-hidden="true">↗</span></button>
+            <span class="helper" id="player-total">0 players · add 2 to begin</span>
+          </div>
+          <p class="notice" id="setup-notice" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="gameplay" id="gameplay" hidden>
+          <div class="game-layout" id="round-layout">
+            <aside class="team-area" aria-label="Teams and shuffled turns">
+              <h3>The teams</h3>
+              <p>Turn order is shuffled for the whole room.</p>
+              <div class="teams" id="teams"></div>
+              <div class="turn-list" id="turn-list" aria-label="Turn order"></div>
+            </aside>
+            <section class="round-area" aria-label="Question">
+              <div class="turn-banner"><strong id="turn-label">Player’s turn</strong><span id="round-progress">Question 1 of 10</span></div>
+              <h3 id="question-text"></h3>
+              <div class="answers" id="answers"></div>
+              <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+              <div class="round-actions"><span class="helper">Correct answer or speaking turn = 1 point</span><button class="button" id="next-button" type="button" disabled>Next question <span aria-hidden="true">→</span></button></div>
+            </section>
+          </div>
+          <section class="results" id="results" aria-live="polite" hidden></section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span>AFTER DARK ENGLISH CLUB · HALLOWEEN EDITION</span><span>Learn a little. Play a little. Stay curious.</span></div></footer>
+
+  <script>
+    const questions = [
+      { prompt: 'What does the suffix -less usually mean?', options: ['Full of something', 'Without something', 'A little bit of something', 'The biggest of something'], answer: 1, note: '“Less” means without or not having something.' },
+      { prompt: 'Which word means “without hope”?', options: ['Hopeful', 'Hopeless', 'Hoping', 'Hopefulness'], answer: 1, note: 'Hope + -less = hopeless.' },
+      { prompt: 'A person who is not afraid is…', options: ['Fearless', 'Fearful', 'Fearlessful', 'Unfear'], answer: 0, note: 'Fear + -less = fearless: without fear.' },
+      { prompt: 'Which adjective means “not careful”?', options: ['Careful', 'Careless', 'Caring', 'Carefree'], answer: 1, note: 'Care + -less = careless.' },
+      { prompt: 'A sky with no clouds is…', options: ['Cloudful', 'Cloudless', 'Cloudfreeful', 'Uncloud'], answer: 1, note: 'Cloud + -less = cloudless.' },
+      { prompt: 'Which horror genre builds suspense and tension?', options: ['Thriller', 'Ghost story', 'Slasher', 'Monster horror'], answer: 0, note: 'Thrillers keep the audience guessing with suspense.' },
+      { prompt: 'A horror movie with graphic, bloody violence is often called…', options: ['Gory', 'Cloudless', 'Careless', 'Homeless'], answer: 0, note: 'Gory means showing graphic blood or violence; bloody is a related adjective.' },
+      { prompt: 'Which kind of story features spirits haunting the living?', options: ['Ghost story', 'Thriller', 'Slasher', 'Monster horror'], answer: 0, note: 'A ghost story centers on spirits or ghosts.' },
+      { prompt: 'What is a poltergeist?', options: ['A noisy spirit that moves objects', 'A detective in a thriller', 'A kind of blood-soaked costume', 'A giant monster'], answer: 0, note: 'A poltergeist is a noisy spirit said to move or throw objects.' },
+      { prompt: 'What’s your favorite horror movie? Choose a genre, then tell your team the title and why you like it.', options: ['Thriller', 'Slasher / gory', 'Ghost story / poltergeist', 'Psychological or monster horror'], discussion: true, note: 'Try: “My favorite horror movie is… because…”' }
+    ];
+
+    const players = [];
+    let teams = [[], []];
+    let turnOrder = [];
+    let questionIndex = 0;
+    let scores = [0, 0];
+    let answered = false;
+
+    const playerForm = document.querySelector('#player-form');
+    const playerInput = document.querySelector('#player-name');
+    const playerList = document.querySelector('#player-list');
+    const dealButton = document.querySelector('#deal-button');
+    const playerTotal = document.querySelector('#player-total');
+    const setupNotice = document.querySelector('#setup-notice');
+    const setupPanel = document.querySelector('#setup-panel');
+    const gameplay = document.querySelector('#gameplay');
+    const teamsElement = document.querySelector('#teams');
+    const turnList = document.querySelector('#turn-list');
+    const turnLabel = document.querySelector('#turn-label');
+    const roundProgress = document.querySelector('#round-progress');
+    const questionText = document.querySelector('#question-text');
+    const answersElement = document.querySelector('#answers');
+    const feedback = document.querySelector('#feedback');
+    const nextButton = document.querySelector('#next-button');
+    const results = document.querySelector('#results');
+
+    function shuffle(items) {
+      const shuffled = [...items];
+      for (let index = shuffled.length - 1; index > 0; index--) {
+        const other = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
+      }
+      return shuffled;
+    }
+
+    function renderPlayers() {
+      playerList.replaceChildren();
+      players.forEach((name, index) => {
+        const chip = document.createElement('span');
+        chip.className = 'player-chip';
+        const label = document.createElement('span');
+        label.textContent = name;
+        const remove = document.createElement('button');
+        remove.className = 'remove-player';
+        remove.type = 'button';
+        remove.setAttribute('aria-label', `Remove ${name}`);
+        remove.textContent = '×';
+        remove.addEventListener('click', () => {
+          players.splice(index, 1);
+          renderPlayers();
+        });
+        chip.append(label, remove);
+        playerList.append(chip);
+      });
+      dealButton.disabled = players.length < 2;
+      playerTotal.textContent = `${players.length} ${players.length === 1 ? 'player' : 'players'} · ${players.length < 2 ? 'add 2 to begin' : 'ready to play'}`;
+    }
+
+    playerForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const name = playerInput.value.trim();
+      if (!name) return;
+      if (players.some(player => player.toLocaleLowerCase() === name.toLocaleLowerCase())) {
+        setupNotice.textContent = 'That name is already on the list.';
+        playerInput.focus();
+        return;
+      }
+      players.push(name);
+      setupNotice.textContent = '';
+      playerInput.value = '';
+      renderPlayers();
+      playerInput.focus();
+    });
+
+    dealButton.addEventListener('click', () => {
+      if (players.length < 2) return;
+      const shuffledPlayers = shuffle(players);
+      teams = [[], []];
+      shuffledPlayers.forEach((player, index) => teams[index % 2].push(player));
+      turnOrder = shuffle(players);
+      scores = [0, 0];
+      questionIndex = 0;
+      setupPanel.hidden = true;
+      gameplay.hidden = false;
+      results.hidden = true;
+      document.querySelector('#round-layout').hidden = false;
+      renderTeams();
+      renderQuestion();
+      document.querySelector('#game-board').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    function renderTeams() {
+      teamsElement.replaceChildren();
+      teams.forEach((team, index) => {
+        const teamElement = document.createElement('div');
+        teamElement.className = `team${index === 1 ? ' team-b' : ''}`;
+        const title = document.createElement('div');
+        title.className = 'team-title';
+        const name = document.createElement('span');
+        name.textContent = `Team ${index === 0 ? 'Pumpkin' : 'Moon'} `;
+        const score = document.createElement('span');
+        score.className = 'team-score';
+        score.id = `team-score-${index}`;
+        score.textContent = `${scores[index]} pts`;
+        title.append(name, score);
+        const members = document.createElement('div');
+        members.className = 'team-members';
+        members.textContent = team.join(' · ');
+        teamElement.append(title, members);
+        teamsElement.append(teamElement);
+      });
+      renderTurnList();
+    }
+
+    function renderTurnList() {
+      turnList.replaceChildren();
+      turnOrder.forEach((player, index) => {
+        const row = document.createElement('div');
+        row.className = `turn-player${index === questionIndex % turnOrder.length && questionIndex < questions.length ? ' current' : ''}`;
+        const name = document.createElement('span');
+        name.textContent = `${index + 1}. ${player}`;
+        const tag = document.createElement('span');
+        tag.className = 'turn-tag';
+        tag.textContent = teams[0].includes(player) ? 'Pumpkin' : 'Moon';
+        row.append(name, tag);
+        turnList.append(row);
+      });
+    }
+
+    function renderQuestion() {
+      const question = questions[questionIndex];
+      const player = turnOrder[questionIndex % turnOrder.length];
+      const teamIndex = teams[0].includes(player) ? 0 : 1;
+      answered = false;
+      turnLabel.textContent = `${player}’s turn · Team ${teamIndex === 0 ? 'Pumpkin' : 'Moon'}`;
+      roundProgress.textContent = `Question ${questionIndex + 1} of ${questions.length}`;
+      questionText.textContent = question.prompt;
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      nextButton.disabled = true;
+      answersElement.replaceChildren();
+      question.options.forEach((option, index) => {
+        const answerButton = document.createElement('button');
+        answerButton.type = 'button';
+        answerButton.className = 'answer';
+        answerButton.textContent = option;
+        answerButton.addEventListener('click', () => chooseAnswer(index, teamIndex));
+        answersElement.append(answerButton);
+      });
+      renderTurnList();
+    }
+
+    function chooseAnswer(selectedIndex, teamIndex) {
+      if (answered) return;
+      answered = true;
+      const question = questions[questionIndex];
+      const answerButtons = [...answersElement.querySelectorAll('.answer')];
+      answerButtons.forEach((button, index) => {
+        button.disabled = true;
+        if (question.discussion && index === selectedIndex) button.classList.add('correct');
+        else if (!question.discussion && index === question.answer) button.classList.add('correct');
+        else if (index === selectedIndex) button.classList.add('incorrect');
+      });
+      if (question.discussion || selectedIndex === question.answer) {
+        scores[teamIndex]++;
+        feedback.textContent = question.discussion ? `You picked ${question.options[selectedIndex]}. ${question.note}` : `That’s right! ${question.note}`;
+        feedback.classList.add('good');
+        document.querySelector(`#team-score-${teamIndex}`).textContent = `${scores[teamIndex]} pts`;
+      } else {
+        feedback.textContent = `Not quite. ${question.note}`;
+        feedback.classList.add('bad');
+      }
+      nextButton.disabled = false;
+      nextButton.innerHTML = questionIndex === questions.length - 1 ? 'See final score <span aria-hidden="true">→</span>' : 'Next question <span aria-hidden="true">→</span>';
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (!answered) return;
+      questionIndex++;
+      if (questionIndex >= questions.length) {
+        showResults();
+        return;
+      }
+      renderQuestion();
+    });
+
+    function showResults() {
+      document.querySelector('#round-layout').hidden = true;
+      results.hidden = false;
+      let headline = 'A spellbinding tie!';
+      if (scores[0] > scores[1]) headline = 'Team Pumpkin wins!';
+      if (scores[1] > scores[0]) headline = 'Team Moon wins!';
+      results.replaceChildren();
+      const eyebrow = document.createElement('p');
+      eyebrow.className = 'eyebrow';
+      eyebrow.textContent = 'The final spell is cast';
+      const title = document.createElement('h3');
+      title.textContent = headline;
+      const summary = document.createElement('p');
+      summary.textContent = 'Ten questions down. Your -less words are looking fearless.';
+      const scoreRow = document.createElement('div');
+      scoreRow.className = 'final-scores';
+      ['Pumpkin', 'Moon'].forEach((team, index) => {
+        const score = document.createElement('div');
+        score.className = 'final-score';
+        const points = document.createElement('strong');
+        points.textContent = scores[index];
+        score.append(points, document.createTextNode(`Team ${team}`));
+        scoreRow.append(score);
+      });
+      const restart = document.createElement('button');
+      restart.className = 'button secondary';
+      restart.type = 'button';
+      restart.textContent = 'Shuffle teams again';
+      restart.addEventListener('click', () => {
+        gameplay.hidden = true;
+        setupPanel.hidden = false;
+        playerInput.focus();
+      });
+      results.append(eyebrow, title, summary, scoreRow, restart);
+      results.focus();
+      results.setAttribute('tabindex', '-1');
+    }
+  </script>
+</body>
+</html>
